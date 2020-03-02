@@ -187,10 +187,10 @@ def manipulate_latent(model, data, args):
     print('-' * 30 + 'End: manipulate' + '-' * 30)
 
 
-def load_mnist():
+def load_fashion_mnist():
     # the data, shuffled and split between train and test sets
-    from keras.datasets import mnist
-    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    from keras.datasets import fashion_mnist
+    (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
 
     x_train = x_train.reshape(-1, 28, 28, 1).astype('float32') / 255.
     x_test = x_test.reshape(-1, 28, 28, 1).astype('float32') / 255.
@@ -206,7 +206,7 @@ if __name__ == "__main__":
     from keras import callbacks
 
     # setting the hyper parameters
-    parser = argparse.ArgumentParser(description="Capsule Network on MNIST.")
+    parser = argparse.ArgumentParser(description="Capsule Network on FASHION_MNIST.")
     parser.add_argument('--epochs', default=50, type=int)
     parser.add_argument('--batch_size', default=100, type=int)
     parser.add_argument('--lr', default=0.001, type=float,
@@ -221,7 +221,7 @@ if __name__ == "__main__":
                         help="Fraction of pixels to shift at most in each direction.")
     parser.add_argument('--debug', action='store_true',
                         help="Save weights by TensorBoard")
-    parser.add_argument('--save_dir', default='./result')
+    parser.add_argument('--save_dir', default='./result_fashion')
     parser.add_argument('-t', '--testing', action='store_true',
                         help="Test the trained model on testing dataset")
     parser.add_argument('--digit', default=5, type=int,
@@ -235,7 +235,7 @@ if __name__ == "__main__":
         os.makedirs(args.save_dir)
 
     # load data
-    (x_train, y_train), (x_test, y_test) = load_mnist()
+    (x_train, y_train), (x_test, y_test) = load_fashion_mnist()
 
     # define model
     model, eval_model, manipulate_model = CapsNet(input_shape=x_train.shape[1:],
