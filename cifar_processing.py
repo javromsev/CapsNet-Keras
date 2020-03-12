@@ -2,4 +2,28 @@
 ## from Tensors to Array
 
 def create_cifar_array():
+  
+  # Import dataset from KERAS API
+  
+  from keras.datasets import cifar100
+  
+  # Define train and test sets (still RGB format)
+  
+  (rgb_x_train, rgb_y_train), (rgb_x_test, rgb_y_test) = cifar100.load_data(label_mode='fine')
+  
+  # Convert from RGB format to grayscale
+  
+  x_train_tens = tf.image.rgb_to_grayscale(rgb_x_train, name=None)
+  x_test_tens = tf.image.rgb_to_grayscale(rgb_x_test, name=None)
+  y_train_tens = tf.image.rgb_to_grayscale(rgb_y_train, name=None)
+  y_test_tens = tf.image.rgb_to_grayscale(rgb_x_test, name=None)
+  
+  # Convert Tensors to array
+  
+  x_train = x_train_tens.eval(session=tf.compat.v1.Session())
+  y_test = y_test_tens.eval(session=tf.compat.v1.Session())
+  x_train = x_train_tens.eval(session=tf.compat.v1.Session())
+  y_test = y_test_tens.eval(session=tf.compat.v1.Session())
+  
+  return x_train,y_train,x_test,x_test
 
