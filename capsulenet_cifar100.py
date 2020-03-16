@@ -190,8 +190,10 @@ def manipulate_latent(model, data, args):
 
 def load_cifar():
     # the data, shuffled and split between train and test sets
-    (x_train, y_train), (x_test, y_test) = (cifar.create_cifar_array()[0], cifar.create_cifar_array()[1]), (cifar.create_cifar_array()[2], cifar.create_cifar_array()[3])
-
+    x_train = cifar.create_cifar_array()[0]
+    y_train = cifar.create_cifar_array()[1] 
+    x_test = cifar.create_cifar_array()[2]
+    y_test = cifar.create_cifar_array()[3]
     x_train = x_train.reshape(-1, 32, 32, 1).astype('float32') / 255.
     x_test = x_test.reshape(-1, 32, 32, 1).astype('float32') / 255.
     y_train = to_categorical(y_train.astype('float32'))
