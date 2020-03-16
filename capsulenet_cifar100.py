@@ -30,7 +30,7 @@ K.set_image_data_format('channels_last')
 
 def CapsNet(input_shape, n_class, routings):
     """
-    A Capsule Network on MNIST.
+    A Capsule Network on CIFAR100.
     :param input_shape: data shape, 3d, [width, height, channels]
     :param n_class: number of classes
     :param routings: number of routing iterations
@@ -188,13 +188,13 @@ def manipulate_latent(model, data, args):
     print('-' * 30 + 'End: manipulate' + '-' * 30)
 
 
-def load_fashion_mnist():
+def load_cifar():
     # the data, shuffled and split between train and test sets
-    from keras.datasets import fashion_mnist
-    (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
+    (x_train, y_train), (x_test, y_test) = (cifar.create_cifar_array()[0], cifar.create_cifar_array()[1]), 
+                                           (cifar.create_cifar_array()[2], cifar.create_cifar_array()[3])
 
-    x_train = x_train.reshape(-1, 28, 28, 1).astype('float32') / 255.
-    x_test = x_test.reshape(-1, 28, 28, 1).astype('float32') / 255.
+    x_train = x_train.reshape(-1, 32, 32, 1).astype('float32') / 255.
+    x_test = x_test.reshape(-1, 32, 32, 1).astype('float32') / 255.
     y_train = to_categorical(y_train.astype('float32'))
     y_test = to_categorical(y_test.astype('float32'))
     return (x_train, y_train), (x_test, y_test)
@@ -207,7 +207,7 @@ if __name__ == "__main__":
     from keras import callbacks
 
     # setting the hyper parameters
-    parser = argparse.ArgumentParser(description="Capsule Network on FASHION_MNIST.")
+    parser = argparse.ArgumentParser(description="Capsule Network on CIFAR100.")
     parser.add_argument('--epochs', default=50, type=int)
     parser.add_argument('--batch_size', default=100, type=int)
     parser.add_argument('--lr', default=0.001, type=float,
@@ -236,7 +236,7 @@ if __name__ == "__main__":
         os.makedirs(args.save_dir)
 
     # load data
-    (x_train, y_train), (x_test, y_test) = load_fashion_mnist()
+    (x_train, y_train), (x_test, y_test) = load_cifar()
 
     # define model
     model, eval_model, manipulate_model = CapsNet(input_shape=x_train.shape[1:],
