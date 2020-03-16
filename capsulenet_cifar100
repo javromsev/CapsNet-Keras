@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 from utils import combine_images
 from PIL import Image
 from capsulelayers import CapsuleLayer, PrimaryCap, Length, Mask
+import cifar_processing as cifar
 
 K.set_image_data_format('channels_last')
 
