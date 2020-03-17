@@ -1,6 +1,9 @@
 ## This class is aimed to preprocess CIFAR10/CIFAR100 dataset (available on Keras API) in order to convert all training sets 
 ## from Tensors to Array
 
+import tensorflow as tf
+
+
 def create_cifar_array():
   
   # Import dataset from KERAS API
