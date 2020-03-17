@@ -5,7 +5,7 @@ def create_cifar_array():
   
   # Import dataset from KERAS API
   
-  from keras.datasets import cifar10
+  from keras.datasets import cifar100
   
   # Define train and test sets (still RGB format)
   
