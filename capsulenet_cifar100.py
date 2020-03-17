@@ -223,7 +223,7 @@ if __name__ == "__main__":
                         help="Fraction of pixels to shift at most in each direction.")
     parser.add_argument('--debug', action='store_true',
                         help="Save weights by TensorBoard")
-    parser.add_argument('--save_dir', default='./result_fashion')
+    parser.add_argument('--save_dir', default='./result_cifar')
     parser.add_argument('-t', '--testing', action='store_true',
                         help="Test the trained model on testing dataset")
     parser.add_argument('--digit', default=5, type=int,
