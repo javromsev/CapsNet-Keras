@@ -16,9 +16,9 @@ Author: Xifeng Guo, E-mail: `guoxifeng1990@163.com`, Github: `https://github.com
 """
 
 import numpy as np
-from tensorflow.keras import layers, models, optimizers
-from tensorflow.keras import backend as K
-from tensorflow.keras.utils import to_categorical
+from keras import layers, models, optimizers
+from keras import backend as K
+from keras.utils import to_categorical
 import matplotlib.pyplot as plt
 from utils import combine_images
 from PIL import Image
@@ -189,7 +189,7 @@ def manipulate_latent(model, data, args):
 
 def load_fashion_mnist():
     # the data, shuffled and split between train and test sets
-    from tensorflow.keras.datasets import fashion_mnist
+    from keras.datasets import fashion_mnist
     (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
 
     x_train = x_train.reshape(-1, 28, 28, 1).astype('float32') / 255.
