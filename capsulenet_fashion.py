@@ -17,7 +17,7 @@ Author: Xifeng Guo, E-mail: `guoxifeng1990@163.com`, Github: `https://github.com
 
 import numpy as np
 from keras import layers, models, optimizers
-from tensorflow.keras import backend as K
+from tensorflow.python.keras import backend as K
 from keras.utils import to_categorical
 import matplotlib.pyplot as plt
 from utils import combine_images
